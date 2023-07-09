@@ -1,1 +1,1 @@
-# Static website - HTML & CSS
+This directory implements webpage design.
