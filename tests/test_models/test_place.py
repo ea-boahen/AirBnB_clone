@@ -9,8 +9,8 @@ import datetime
 
 class TestPlace(unittest.TestCase):
     """Tests instances and methods from amenity class"""
-
-    p = Place()
+    def setUp(self):
+       self.p = Place()
 
     def test_class_exists(self):
         """tests if class exists"""
