@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+import sys
+sys.path.append('/home/bcode/gitdir/AirBnB_clone/')
+"""
+from models import storage
+from models.base_model import BaseModel
+"""
 from models import storage
 from models.base_model import BaseModel
 
