@@ -111,11 +111,17 @@ class TestConsole(unittest.TestCase):
         review = Review()
         review_id = review.id
         storage.new(review)
+        attribute_name = "text"
+        string_value = "Updated Text"
         self.cli.onecmd(f"Review.destroy({review_id})")
         self.assertEqual("", output)
         self.cli.onecmd(f"Review.show({review_id})")
         self.assertIn(str(review), output)
         self.assertTrue(review_id not in storage.all("Review"))
+        self.console.onecmd(f"Review.update({review_id}, {{ \"{attribute_name}\": \"{string_value}\" }})")
+        self.assertEqual(output, "")
+        updated_review = storage.all()["Review." + review_id]
+        self.assertEqual(getattr(updated_review, attribute_name), string_value)
 
     def test_count_adv(self):
         obj_dict = storage.all()
