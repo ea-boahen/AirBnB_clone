@@ -107,12 +107,14 @@ class TestConsole(unittest.TestCase):
         self.flush_buffer()
         obj_dict = storage.all()
         
-    def test_review_destroy(self):
+    def test_review(self):
         review = Review()
         review_id = review.id
         storage.new(review)
         self.cli.onecmd(f"Review.destroy({review_id})")
         self.assertEqual("", output)
+        self.cli.onecmd(f"Review.show({review_id})")
+        self.assertIn(str(review), output)
         self.assertTrue(review_id not in storage.all("Review"))
 
     def test_count_adv(self):
