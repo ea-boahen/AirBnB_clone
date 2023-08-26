@@ -9,7 +9,7 @@ from io import StringIO
 from unittest.mock import create_autospec
 from console import HBNBCommand
 from models import storage
-
+from models.review import Review
 
 class TestConsole(unittest.TestCase):
     """
@@ -106,6 +106,14 @@ class TestConsole(unittest.TestCase):
         self.cli.onecmd("update BaseModel 123")
         self.flush_buffer()
         obj_dict = storage.all()
+        
+    def test_review_destroy(self):
+        review = Review()
+        review_id = review.id
+        storage.new(review)
+        self.cli.onecmd(f"Review.destroy({review_id})")
+        self.assertEqual("", output)
+        self.assertTrue(review_id not in storage.all("Review"))
 
     def test_count_adv(self):
         obj_dict = storage.all()
