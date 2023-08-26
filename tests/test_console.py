@@ -39,7 +39,7 @@ class TestConsole(unittest.TestCase):
             self.mock_stdout.write.call_args_list[-nr:]))
 
     def test_quit(self):
-        self.assertTrue(self.cli.onecmd("EOF"))
+        self.assertTrue(self.cli.onecmd("quit"))
 
     def test_help(self):
         self.cli.onecmd("help help")
